@@ -44,73 +44,209 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/contacts", function(req, res) {
-  console.log('get contacts');
+app.get("/trucks", function(req, res) {
     db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
+      handleError(res, err.message, "Failed to get trucks.");
     } else {
       res.status(200).json(docs);
     }
   });
 });
 
-app.post("/contacts", function(req, res) {
-  console.log('post contacts');
+app.post("/trucks", function(req, res) {
   var newContact = req.body;
   newContact.createDate = new Date();
 
-  if (!(req.body.firstName || req.body.lastName)) {
-    handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+  if (!(req.body.name)) {
+    handleError(res, "Invalid user input", "Must provide a name.", 400);
   }
 
   db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
+      handleError(res, err.message, "Failed to create new truck.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
   });
 });
 
-/*  "/contacts/:id"
- *    GET: find contact by id
- *    PUT: update contact by id
- *    DELETE: deletes contact by id
- */
+/*
+//var foodTrucks10 = [
+  {
+    name: "Mammoth Meats",
+    description: "Grass fed cows cooked up caveman style.",
+    tags: [
+      "steak",
+      "burgers",
+      "ostrich",
+      "buffalo",
+      "great",
+      "yummy"
+    ],
+    menuOfferings: [
+      "Burger",
+      "Salad",
+      "Sticks"
+    ],
+    img: "images/resize_Woolly_Mammoth.png",
+    locTime: []
+  },
+  {
+    name: "The Big Cuban",
+    description: "Authentic Cuban sandwiches now that the embargo is lifted.!",
+    tags: [
+      "sandwich",
+      "ham",
+      "great",
+      "traditional"
+    ],
+    menuOfferings: [
+      "Cuban Sandwich",
+      "Fries"
+    ],
+    img: "images/resize_SandwichSU.png",
+    locTime: []
+  },
+  {
+    name: "The Icee Snowman",
+    description: "Snocones! Try the high fructose corn syrup flavor!",
+    tags: [
+      "ice cream",
+      "snow cones",
+      "waffle cones",
+      "sweet"
+    ],
+    menuOfferings: [
+      "Ice Cream",
+      "Gelato"
+    ],
+    img: "images/resize_Snowman_SU.png",
+    locTime: []
+  },
+  {
+    name: "Tail of the Whale",
+    description: "Sushi from a food truck - awesome!",
+    tags: [
+      "octopus",
+      "sashimi",
+      "miso",
+      "delicious",
+      "expensive"
+    ],
+    menuOfferings: [
+      "Sushi",
+      "Sashimi",
+      "Soup"
+    ],
+    img: "images/resize_Blue_Whale.png",
+    locTime: []
+  },
+  {
+    name: "Cicada Poppers",
+    description: "Awesome crunch",
+    tags: [
+      "bugs",
+      "crickets",
+      "fried",
+      "slugs",
+      "cicadas",
+      "cheap"
+    ],
+    menuOfferings: [
+      "Taco",
+      "Wrap"
+    ],
+    img: "images/resize_Cicada.png",
+    locTime: []
+  },
+  {
+    name: "The Sailor's Cup",
+    description: "Premium coffee from around the world",
+    tags: [
+      "arabica",
+      "columbian",
+      "fresh",
+      "roasted"
+    ],
+    menuOfferings: [
+      "Pastry",
+      "Flavored Coffee"
+    ],
+    img: "images/resize_Coffee.png",
+    locTime: []
+  },
+  {
+    name: "The Hole Enchilada",
+    description: "Fusion Gourmet Donuts",
+    tags: [
+      "glazed",
+      "chili",
+      "donut ham hamburger",
+      "taco donut",
+      "great"
+    ],
+    menuOfferings: [
+      "Donut",
+      "Donut Holes",
+      "Eclair",
+      "Enchilada"
+    ],
+    img: "images/resize_Doughnut.png",
+    locTime: []
+  },
+  {
+    name: "Boomerang Hut",
+    description: "Kangaroo Steaks!",
+    tags: [
+      "sausage",
+      "grilled onions",
+      "grilled peppers",
+      "bbq",
+      "steak"
+    ],
+    menuOfferings: [
+      "Steak",
+      "Coleslaw"
+    ],
+    img: "images/resize_Kangaroo.png",
+    locTime: []
+  },
+  {
+    name: "Overdone",
+    description: "Outrageously ostentatious cupcakes",
+    tags: [
+      "birthday",
+      "special occasions",
+      "fresh",
+      "sprinkles"
+    ],
+    menuOfferings: [
+      "Cupcake",
+      "Mini CupCakes"
+    ],
+    img: "images/resize_Cupcake.png",
+    locTime: []
+  },
+  {
+    name: "The Potato Pup",
+    description: "Hotdogs topped with crunchy potato chips",
+    tags: [
+      "sauerkraut",
+      "new york",
+      "chicago",
+      "onions",
+      "mustard"
+    ],
+    menuOfferings: [
+      "Hot Dog",
+      "Fries"
+    ],
+    img: "images/resize_Hot_Dog.png",
+    locTime: []
+  }
+];
 
-app.get("/contacts/:id", function(req, res) {
-  console.log('get id');
-    db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contact");
-    } else {
-      res.status(200).json(doc);
-    }
-  });
-});
-
-app.put("/contacts/:id", function(req, res) {
-  console.log('post id');
-    var updateDoc = req.body;
-  delete updateDoc._id;
-
-  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to update contact");
-    } else {
-      res.status(204).end();
-    }
-  });
-});
-
-app.delete("/contacts/:id", function(req, res) {
-  console.log('delete id');
-    db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
-    if (err) {
-      handleError(res, err.message, "Failed to delete contact");
-    } else {
-      res.status(204).end();
-    }
-  });
-});
+var foodTrucks1 = foodTrucks10.slice(0,1);
+var foodTrucks5 = foodTrucks10.slice(0,5);
+*/

@@ -49,6 +49,7 @@ app.get("/trucks", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get trucks.");
     } else {
+      console.log('serving trucks');
       res.status(200).json(docs);
     }
   });

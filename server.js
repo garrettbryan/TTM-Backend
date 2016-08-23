@@ -63,7 +63,7 @@ app.get("/trucks", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get trucks.");
     }else if (urlString.queryparam.callback && urlString.queryparam.callback != '?') {
-      json = urlString.queryparam.callback + "(" + docs + ");";
+      json = urlString.queryparam.callback + "(" + JSON.stringify(docs) + ");";
       res.writeHead(200, {'content-type':'application/json',
         'content-length':json.length});
       res.end(json);

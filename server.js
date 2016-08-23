@@ -51,12 +51,15 @@ function handleError(res, reason, message, code) {
 
 app.get("/trucks", function(req, res) {
 
-    var urlString = {
-      pathname: url.parse(req.url).pathname,
-      queryparam: querystring.parse(url.parse(req.url).query)
-    };
+  var urlString = {
+    pathname: url.parse(req.url).pathname,
+    queryparam: querystring.parse(url.parse(req.url).query)
+  };
 
-    db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+  console.log(urlString);
+
+  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+    console.log(docs);
     if (err) {
       handleError(res, err.message, "Failed to get trucks.");
     }else if (urlString.queryparam.callback && urlString.queryparam.callback != '?') {

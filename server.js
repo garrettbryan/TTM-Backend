@@ -13,6 +13,14 @@ app.use(bodyParser.json());
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
+
+var urlString = {
+  pathname: url.parse(request.url).pathname,
+  queryparam: querystring.parse(url.parse(request.url).query)
+};
+
+
+
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   if (err) {
@@ -23,6 +31,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   // Save database object from the callback for reuse.
   db = database;
   console.log("Database connection ready");
+
+
 
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
@@ -39,16 +49,22 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-/*  "/contacts"
- *    GET: finds all contacts
- *    POST: creates a new contact
+/*  "/trucks"
+ *    GET: finds all trucks
+ *    POST: creates a new truck
  */
 
 app.get("/trucks", function(req, res) {
     db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get trucks.");
-    } else {
+    }else if (urlString.queryparam.callback && urlString.queryparam.callback != '?') {
+      json = urlString.queryparam.callback + "(" + docs + ");";
+      response.writeHead(200, {'content-type':'application/json',
+        'content-length':json.length});
+      response.end(json);
+    }
+     else {
       console.log('serving trucks');
       res.status(200).json(docs);
     }

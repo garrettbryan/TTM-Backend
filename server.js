@@ -92,6 +92,10 @@ app.post("/trucks", function(req, res) {
   });
 });
 
+app.delete("/alltrucks", function(req, res) {
+  db.collection(CONTACTS_COLLECTION).remove({});
+});
+
 /*
 //var foodTrucks10 = [
   {
@@ -110,7 +114,7 @@ app.post("/trucks", function(req, res) {
       "Salad",
       "Sticks"
     ],
-    img: "images/resize_Woolly_Mammoth.png",
+    img: "images/burger.png",
     locTime: []
   },
   {
@@ -126,23 +130,23 @@ app.post("/trucks", function(req, res) {
       "Cuban Sandwich",
       "Fries"
     ],
-    img: "images/resize_SandwichSU.png",
+    img: "images/bagels.png",
     locTime: []
   },
   {
-    name: "The Icee Snowman",
-    description: "Snocones! Try the high fructose corn syrup flavor!",
+    name: "The Icee Codfish",
+    description: "Frozen fishsticks deep fried",
     tags: [
-      "ice cream",
+      "fishsticks",
       "snow cones",
       "waffle cones",
-      "sweet"
+      "fishy"
     ],
     menuOfferings: [
-      "Ice Cream",
+      "Fish Sticks",
       "Gelato"
     ],
-    img: "images/resize_Snowman_SU.png",
+    img: "images/seafood.png",
     locTime: []
   },
   {
@@ -160,7 +164,7 @@ app.post("/trucks", function(req, res) {
       "Sashimi",
       "Soup"
     ],
-    img: "images/resize_Blue_Whale.png",
+    img: "images/sushi.png",
     locTime: []
   },
   {
@@ -175,10 +179,10 @@ app.post("/trucks", function(req, res) {
       "cheap"
     ],
     menuOfferings: [
-      "Taco",
-      "Wrap"
+      "Roll",
+      "Stir Fry"
     ],
-    img: "images/resize_Cicada.png",
+    img: "images/chinese.png",
     locTime: []
   },
   {
@@ -194,12 +198,12 @@ app.post("/trucks", function(req, res) {
       "Pastry",
       "Flavored Coffee"
     ],
-    img: "images/resize_Coffee.png",
+    img: "images/coffee.png",
     locTime: []
   },
   {
     name: "The Hole Enchilada",
-    description: "Fusion Gourmet Donuts",
+    description: "Mexican Donuts",
     tags: [
       "glazed",
       "chili",
@@ -213,12 +217,12 @@ app.post("/trucks", function(req, res) {
       "Eclair",
       "Enchilada"
     ],
-    img: "images/resize_Doughnut.png",
+    img: "images/taco.png",
     locTime: []
   },
   {
-    name: "Boomerang Hut",
-    description: "Kangaroo Steaks!",
+    name: "Guido's Hut",
+    description: "artisan pizza",
     tags: [
       "sausage",
       "grilled onions",
@@ -227,10 +231,10 @@ app.post("/trucks", function(req, res) {
       "steak"
     ],
     menuOfferings: [
-      "Steak",
-      "Coleslaw"
+      "Pizza",
+      "Antipasta"
     ],
-    img: "images/resize_Kangaroo.png",
+    img: "images/pizza.png",
     locTime: []
   },
   {
@@ -246,7 +250,7 @@ app.post("/trucks", function(req, res) {
       "Cupcake",
       "Mini CupCakes"
     ],
-    img: "images/resize_Cupcake.png",
+    img: "images/cupcake.png",
     locTime: []
   },
   {
@@ -263,7 +267,7 @@ app.post("/trucks", function(req, res) {
       "Hot Dog",
       "Fries"
     ],
-    img: "images/resize_Hot_Dog.png",
+    img: "images/hotdog.png",
     locTime: []
   }
 ];

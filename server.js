@@ -99,9 +99,9 @@ app.delete("/alltrucks", function(req, res) {
 /*
 //var foodTrucks10 = [
   {
-    name: "Mammoth Meats",
-    description: "Grass fed cows cooked up caveman style.",
-    tags: [
+    "name": "Mammoth Meats",
+    "description": "Grass fed cows cooked up caveman style.",
+    "tags": [
       "steak",
       "burgers",
       "ostrich",
@@ -109,68 +109,68 @@ app.delete("/alltrucks", function(req, res) {
       "great",
       "yummy"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Burger",
       "Salad",
       "Sticks"
     ],
-    img: "images/burger.png",
-    locTime: []
+    "img": "images/burger.png",
+    "locTime": []
   },
   {
-    name: "The Big Cuban",
-    description: "Authentic Cuban sandwiches now that the embargo is lifted.!",
-    tags: [
+    "name": "The Big Cuban",
+    "description": "Authentic Cuban sandwiches now that the embargo is lifted.!",
+    "tags": [
       "sandwich",
       "ham",
       "great",
       "traditional"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Cuban Sandwich",
       "Fries"
     ],
-    img: "images/bagels.png",
-    locTime: []
+    "img": "images/bagels.png",
+    "locTime": []
   },
   {
-    name: "The Icee Codfish",
-    description: "Frozen fishsticks deep fried",
-    tags: [
+    "name": "The Icee Codfish",
+    "description": "Frozen fishsticks deep fried",
+    "tags": [
       "fishsticks",
       "snow cones",
       "waffle cones",
       "fishy"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Fish Sticks",
       "Gelato"
     ],
-    img: "images/seafood.png",
-    locTime: []
+    "img": "images/seafood.png",
+    "locTime": []
   },
   {
-    name: "Tail of the Whale",
-    description: "Sushi from a food truck - awesome!",
-    tags: [
+    "name": "Tail of the Whale",
+    "description": "Sushi from a food truck - awesome!",
+    "tags": [
       "octopus",
       "sashimi",
       "miso",
       "delicious",
       "expensive"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Sushi",
       "Sashimi",
       "Soup"
     ],
-    img: "images/sushi.png",
-    locTime: []
+    "img": "images/sushi.png",
+    "locTime": []
   },
   {
-    name: "Cicada Poppers",
-    description: "Awesome crunch",
-    tags: [
+    "name": "Cicada Poppers",
+    "description": "Awesome crunch",
+    "tags": [
       "bugs",
       "crickets",
       "fried",
@@ -178,97 +178,97 @@ app.delete("/alltrucks", function(req, res) {
       "cicadas",
       "cheap"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Roll",
       "Stir Fry"
     ],
-    img: "images/chinese.png",
-    locTime: []
+    "img": "images/chinese.png",
+    "locTime": []
   },
   {
-    name: "The Sailor's Cup",
-    description: "Premium coffee from around the world",
-    tags: [
+    "name": "The Sailor's Cup",
+    "description": "Premium coffee from around the world",
+    "tags": [
       "arabica",
       "columbian",
       "fresh",
       "roasted"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Pastry",
       "Flavored Coffee"
     ],
-    img: "images/coffee.png",
-    locTime: []
+    "img": "images/coffee.png",
+    "locTime": []
   },
   {
-    name: "The Hole Enchilada",
-    description: "Mexican Donuts",
-    tags: [
+    "name": "The Hole Enchilada",
+    "description": "Mexican Donuts",
+    "tags": [
       "glazed",
       "chili",
       "donut ham hamburger",
       "taco donut",
       "great"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Donut",
       "Donut Holes",
       "Eclair",
       "Enchilada"
     ],
-    img: "images/taco.png",
-    locTime: []
+    "img": "images/taco.png",
+    "locTime": []
   },
   {
-    name: "Guido's Hut",
-    description: "artisan pizza",
-    tags: [
+    "name": "Guido's Hut",
+    "description": "artisan pizza",
+    "tags": [
       "sausage",
       "grilled onions",
       "grilled peppers",
       "bbq",
       "steak"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Pizza",
       "Antipasta"
     ],
-    img: "images/pizza.png",
-    locTime: []
+    "img": "images/pizza.png",
+    "locTime": []
   },
   {
-    name: "Overdone",
-    description: "Outrageously ostentatious cupcakes",
-    tags: [
+    "name": "Overdone",
+    "description": "Outrageously ostentatious cupcakes",
+    "tags": [
       "birthday",
       "special occasions",
       "fresh",
       "sprinkles"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Cupcake",
       "Mini CupCakes"
     ],
-    img: "images/cupcake.png",
-    locTime: []
+    "img": "images/cupcake.png",
+    "locTime": []
   },
   {
-    name: "The Potato Pup",
-    description: "Hotdogs topped with crunchy potato chips",
-    tags: [
+    "name": "The Potato Pup",
+    "description": "Hotdogs topped with crunchy potato chips",
+    "tags": [
       "sauerkraut",
       "new york",
       "chicago",
       "onions",
       "mustard"
     ],
-    menuOfferings: [
+    "menuOfferings": [
       "Hot Dog",
       "Fries"
     ],
-    img: "images/hotdog.png",
-    locTime: []
+    "img": "images/hotdog.png",
+    "locTime": []
   }
 ];
 

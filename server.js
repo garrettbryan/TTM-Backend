@@ -6,6 +6,7 @@ var url = require('url');
 var querystring = require('querystring');
 var ObjectID = mongodb.ObjectID;
 
+require('dotenv').config();
 
 var CONTACTS_COLLECTION = "contacts";
 

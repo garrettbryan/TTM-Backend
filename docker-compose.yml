@@ -1,0 +1,25 @@
+version: '3.7'
+
+networks:
+  private:
+    driver: bridge
+
+services:
+  mongo:
+    networks:
+      - private
+    image: mongo:4.2.3
+    ports: 
+      - 27017:27017
+    volumes:
+      - ${MONGOPERSIST}/truck-truck-moose:/data/db
+
+
+  ttm-api: 
+    image: garrettbryan/truck-truck-moose-ui:latest
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/${DB}
+      - PORT=8080

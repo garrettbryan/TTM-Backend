@@ -8,7 +8,7 @@
     "url": "https://github.com/garrettbryan/truck-truck-moose-api.git"
   },
   "license": "MIT",
-  "engines": { 
+  "engines": {
     "node": "^12.16.1",
     "npm": "^6.13.4"
   },
@@ -21,6 +21,9 @@
     "body-parser": "^1.13.3",
     "dotenv": "^8.2.0",
     "express": "^4.13.3",
-    "mongodb": "^2.1.6"
+    "mongodb": "^3.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

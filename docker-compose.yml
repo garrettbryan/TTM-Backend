@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 networks:
   private:
@@ -9,17 +9,21 @@ services:
     networks:
       - private
     image: mongo:4.2.3
-    ports: 
+    ports:
       - 27017:27017
     volumes:
       - ${MONGOPERSIST}truck-truck-moose:/data/db
 
-
-  ttm-api: 
-    image: garrettbryan/truck-truck-moose-ui:latest
+  ttm-api:
+    image: garrettbryan/truck-truck-moose-api:latest
     ports:
       - 80:8080
       - 443:443
     environment:
       - MONGODB_URI=mongodb://mongo:27017/${DB}
       - PORT=8080
+    volumes:
+      - .:/api
+    command:
+      - ./node_modules/nodemon/bin/nodemon.js
+      - ./server.js

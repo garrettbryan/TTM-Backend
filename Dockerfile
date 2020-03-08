@@ -8,7 +8,6 @@ RUN adduser --system --disabled-password --ingroup cgroup cuser
 
 COPY server.js /source
 COPY package.json /source
-COPY Gruntfile.js /source
 
 WORKDIR /source
 RUN ["npm", "install"]
@@ -16,9 +15,6 @@ RUN ["npm", "install"]
 # Chown all the files to the user
 RUN chown -R cuser:cgroup /source
 USER cuser:cgroup
-
-RUN ["bower", "install"]
-RUN ["grunt", "build"]
 
 
 FROM node:12.16-alpine as production

@@ -8,7 +8,7 @@ var ObjectID = mongodb.ObjectID;
 
 require('dotenv').config();
 
-var CONTACTS_COLLECTION = "contacts";
+var trucksCollection = "trucks";
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/${process.env.DB}`, function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);
@@ -37,15 +37,13 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   });
 });
 
-// CONTACTS API ROUTES BELOW
-
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
 
-/*  "/trucks"
+/*  /trucks
  *    GET: finds all trucks
  *    POST: creates a new truck
  */
@@ -59,7 +57,7 @@ app.get("/trucks", function(req, res) {
 
   console.log(urlString);
 
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+  db.collection(trucksCollection).find({}).toArray(function(err, docs) {
     console.log(docs);
     if (err) {
       handleError(res, err.message, "Failed to get trucks.");
@@ -76,15 +74,15 @@ app.get("/trucks", function(req, res) {
   });
 });
 
-app.post("/trucks", function(req, res) {
-  var newContact = req.body;
-  newContact.createDate = new Date();
+app.post("/truck", function(req, res) {
+  var newTruck = req.body;
+  newTruck.createDate = new Date();
 
   if (!(req.body.name)) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   }
 
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+  db.collection(trucksCollection).insertOne(newTruck, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new truck.");
     } else {
@@ -93,12 +91,27 @@ app.post("/trucks", function(req, res) {
   });
 });
 
-app.delete("/alltrucks", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).remove({});
+app.post("/alltrucks", function(req, res) {
+  db.collection(trucksCollection).insert(foodTrucks10, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create all trucks.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
 });
 
-/*
-//var foodTrucks10 = [
+app.delete("/alltrucks", function(req, res) {
+  db.collection(trucksCollection).remove({}, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to remove all trucks.");
+    } else {
+      res.status(200).json(doc.result);
+    }
+  });
+});
+
+var foodTrucks10 = [
   {
     "name": "Mammoth Meats",
     "description": "Grass fed cows cooked up caveman style.",
@@ -275,4 +288,3 @@ app.delete("/alltrucks", function(req, res) {
 
 var foodTrucks1 = foodTrucks10.slice(0,1);
 var foodTrucks5 = foodTrucks10.slice(0,5);
-*/

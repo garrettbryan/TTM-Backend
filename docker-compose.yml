@@ -12,13 +12,13 @@ services:
     ports: 
       - 27017:27017
     volumes:
-      - ${MONGOPERSIST}/truck-truck-moose:/data/db
+      - ${MONGOPERSIST}truck-truck-moose:/data/db
 
 
   ttm-api: 
     image: garrettbryan/truck-truck-moose-ui:latest
     ports:
-      - 80:80
+      - 80:8080
       - 443:443
     environment:
       - MONGODB_URI=mongodb://mongo:27017/${DB}

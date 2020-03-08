@@ -3,8 +3,15 @@
   "dockerRepo": "garrettbryan",
   "version": "0.0.1",
   "description": "Backend API for Truck-Truck-Moose",
-  "repository": "https://github.com/garrettbryan/truck-truck-moose-api.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garrettbryan/truck-truck-moose-api.git"
+  },
   "license": "MIT",
+  "engines": { 
+    "node": "^12.16.1",
+    "npm": "^6.13.4"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

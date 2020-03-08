@@ -15,7 +15,7 @@ COMMIT        := $$(git log -1 --pretty=%h)
 IMG           := ${DOCKERREPO}/${NAME}
 RELEASE       := ${DOCKERREPO}/${NAME}:${VERSION}
 LATEST        := ${DOCKERREPO}/${NAME}:latest
-VERSION       := $$(git describe --tags --abbrev=0)
+# VERSION       := $$(git describe --tags --abbrev=0)
 
 build:
 	@docker build -t ${IMG}:${VERSION}-${FEATUREBRANCH}-${COMMIT} .
